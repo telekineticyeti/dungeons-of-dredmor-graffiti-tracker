@@ -1,15 +1,30 @@
-import { createAction, props } from '@ngrx/store';
+/**
+ * Here the actions are defined
+ */
 
-export const loadGraffitis = createAction(
-  '[Graffiti] Load Graffitis'
+import {createAction, props} from '@ngrx/store';
+import {IGraffiti} from '../components/graffiti/graffiti.component';
+
+export const addGraffiti = createAction('[Graffiti] add Graffiti');
+
+export const addGraffitiSuccess = createAction(
+  '[Graffiti] add Graffiti Success',
+  props<{graffiti: IGraffiti[]}>(),
 );
 
-export const loadGraffitisSuccess = createAction(
-  '[Graffiti] Load Graffitis Success',
-  props<{ data: any }>()
+export const addGraffitiFailure = createAction(
+  '[Graffiti] add Graffiti Failure',
+  props<{error: any}>(),
 );
 
-export const loadGraffitisFailure = createAction(
-  '[Graffiti] Load Graffitis Failure',
-  props<{ error: any }>()
+export const removeGraffiti = createAction('[Graffiti] remove Graffiti');
+
+export const removeGraffitiSuccess = createAction(
+  '[Graffiti] remove Graffiti Success',
+  props<{graffiti: IGraffiti[]}>(),
+);
+
+export const removeGraffitiFailure = createAction(
+  '[Graffiti] remove Graffiti Failure',
+  props<{error: any}>(),
 );

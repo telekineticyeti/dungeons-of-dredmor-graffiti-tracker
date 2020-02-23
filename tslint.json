@@ -2,7 +2,11 @@
   "extends": "tslint:recommended",
   "rules": {
     "array-type": false,
-    "arrow-parens": false,
+    "arrow-parens": [
+      true,
+      "ban-single-arg-parens"
+    ],
+    "component-max-inline-declarations": true,
     "deprecation": {
       "severity": "warning"
     },
@@ -25,13 +29,23 @@
       true,
       "rxjs/Rx"
     ],
-    "interface-name": false,
-    "max-classes-per-file": false,
+    "interface-name": [
+      true,
+      "always-prefix"
+    ],
+    "max-classes-per-file": [
+      true,
+      1,
+      "exclude-class-expressions"
+    ],
     "max-line-length": [
       true,
-      140
+      {
+        "limit": 100,
+        "ignore-pattern": "^import |^export {(.*?)}|class [a-zA-Z]+ implements |//|it("
+      }
     ],
-    "member-access": false,
+    "member-access": true,
     "member-ordering": [
       true,
       {
@@ -44,22 +58,20 @@
       }
     ],
     "no-consecutive-blank-lines": false,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-console": false,
     "no-empty": false,
     "no-inferrable-types": [
       true,
       "ignore-params"
     ],
-    "no-non-null-assertion": true,
+    "no-input-prefix": true,
+    "no-non-null-assertion": false,
     "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
+    "no-unused-expression": [
+      true,
+      "allow-fast-null-checks"
+    ],
     "no-var-requires": false,
     "object-literal-key-quotes": [
       true,
@@ -67,9 +79,11 @@
     ],
     "object-literal-sort-keys": false,
     "ordered-imports": false,
+    "only-arrow-functions": false,
     "quotemark": [
       true,
-      "single"
+      "single",
+      "avoid-escape"
     ],
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,
@@ -81,9 +95,25 @@
     "no-output-rename": true,
     "no-outputs-metadata-property": true,
     "template-banana-in-box": true,
+    "template-conditional-complexity": [
+      true,
+      2
+    ],
     "template-no-negated-async": true,
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter"
+    ],
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    "use-pipe-transform-interface": true,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-trailing-underscore"
+    ]
   },
   "rulesDirectory": [
     "codelyzer"
