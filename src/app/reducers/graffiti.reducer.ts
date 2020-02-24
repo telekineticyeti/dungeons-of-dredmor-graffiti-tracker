@@ -9,16 +9,23 @@ export interface State {
 }
 
 export const initialState: State = {
-  graffitis: [],
+  graffitis: []
 };
 
 const graffitiReducer = createReducer(
   initialState,
-  on(GraffitiActions.addGraffitiSuccess, (state, {graffiti}) => {
+  on(GraffitiActions.addGraffiti, (state, graffiti) => {
     return {...state, graffitis: [...state.graffitis, graffiti]};
   }),
+  on(GraffitiActions.addGraffitiSuccess, (state, {payload}) => {
+    return {...state, graffitis: [...state.graffitis, payload]};
+  }),
+  on(GraffitiActions.loadGraffitis, state => state),
+  on(GraffitiActions.loadGraffitisSuccess, (state, {payload}) => {
+    return {...state, graffitis: payload};
+  })
 );
 
-export function reducer(state: State | undefined, action: Action) {
+export function GraffitiReducer(state: State | undefined, action: Action) {
   return graffitiReducer(state, action);
 }
