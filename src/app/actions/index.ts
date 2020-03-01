@@ -1,5 +1,5 @@
 /**
- * This file needed to be added manually. You can define your Action collections here.
+ * Define and export action collections
  */
 
 import * as GraffitiActions from './graffiti.actions';

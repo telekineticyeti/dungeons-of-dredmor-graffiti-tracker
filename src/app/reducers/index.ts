@@ -1,23 +1,14 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer,
-} from '@ngrx/store';
-import {environment} from '../../environments/environment';
-import * as fromGraffitis from './graffiti.reducer';
+// import * as fromGraffitis from './graffiti.reducer';
+// import * as fromRoot from '../reducers';
 
-export interface GraffitiState {
-  [fromGraffitis.graffitiFeatureKey]: fromGraffitis.State;
-}
+// export const appFeatureKey = 'app';
 
-export interface State {
-  graffitisFeatureKey: GraffitiState;
-}
+// export interface GraffitiState {
+//   [fromGraffitis.graffitiFeatureKey]: fromGraffitis.State;
+// }
 
-// export const reducers: ActionReducerMap<State> = {
+// export interface State extends fromRoot.State {
+//   [appFeatureKey]: GraffitiState;
+// }
 
-// };
-
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+// export function reducers(state:)

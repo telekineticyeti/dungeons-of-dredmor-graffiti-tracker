@@ -1,7 +1,10 @@
-<input type="text" />
-
-<button (click)="addGrafiti()">Add tag</button>
-
+<form (ngSubmit)="addGraffiti()">
+  <div class="form-group">
+    <input [(ngModel)]="tag" placeholder="Enter tag" class="form-control" name="Tag" />
+  </div>
+  <button type="submit">Add tag</button>
+</form>
+<hr />
 <div class="graffitis">
-  <span *ngFor=""></span>
+  <p *ngFor="let g of GraffitiList">{{ g.tag }}</p>
 </div>

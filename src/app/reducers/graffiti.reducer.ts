@@ -1,28 +1,31 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import {GraffitiActions} from '../actions';
 import {IGraffiti} from '../components/graffiti/graffiti.component';
+import {GraffitiActions} from '../actions';
 
 export const graffitiFeatureKey = 'graffiti';
 
 export interface State {
-  graffitis: Array<IGraffiti>;
-  loading: boolean;
+  graffitis: IGraffiti[];
 }
 
 export const initialState: State = {
-  graffitis: [],
-  loading: false,
+  graffitis: []
 };
 
 const graffitiReducer = createReducer(
   initialState,
-  on(GraffitiActions.addGraffitiSuccess, (state, {graffiti}) => {
+  on(GraffitiActions.addGraffiti, (state, graffiti) => {
     return {...state, graffitis: [...state.graffitis, graffiti]};
   }),
+  on(GraffitiActions.addGraffitiSuccess, (state, {payload}) => {
+    return {...state, graffitis: [...state.graffitis, payload]};
+  }),
+  on(GraffitiActions.loadGraffitis, state => state),
+  on(GraffitiActions.loadGraffitisSuccess, (state, {payload}) => {
+    return {...state, graffitis: payload};
+  })
 );
 
-export function reducer(state: State | undefined, action: Action) {
+export function GraffitiReducer(state: State | undefined, action: Action) {
   return graffitiReducer(state, action);
 }
-
-export const getLoading = (state: State) => state.loading;

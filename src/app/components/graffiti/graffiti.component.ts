@@ -13,5 +13,4 @@ export class GraffitiComponent implements OnInit {
 
 export interface IGraffiti {
   tag: string;
-  notes: string | null;
 }
