@@ -1,0 +1,29 @@
+import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+
+const materialModules = [
+  BrowserAnimationsModule,
+  MatCardModule,
+  MatDividerModule,
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  MatListModule,
+  MatIconModule
+];
+
+@NgModule({
+  imports: materialModules,
+  exports: materialModules
+})
+export class MaterialModule {}

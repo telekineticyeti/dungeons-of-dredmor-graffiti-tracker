@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {IGraffiti} from '../components/graffiti/graffiti.component';
+import {IGraffiti} from '../models/graffiti.model';
 
 /**
  * Load Graffitis
@@ -31,7 +31,10 @@ export const addGraffitiFailure = createAction('[Graffiti] add Graffiti Failure'
 /**
  * Remove Graffiti
  */
-export const removeGraffiti = createAction('[Graffiti] remove Graffiti');
+export const removeGraffiti = createAction(
+  '[Graffiti] remove Graffiti',
+  props<{payload: IGraffiti}>()
+);
 
 export const removeGraffitiSuccess = createAction(
   '[Graffiti] remove Graffiti Success',

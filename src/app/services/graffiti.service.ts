@@ -1,5 +1,5 @@
 import {Injectable, Inject, InjectionToken} from '@angular/core';
-import {IGraffiti} from '../components/graffiti/graffiti.component';
+import {IGraffiti} from '../models/graffiti.model';
 import {Observable, of, throwError} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
@@ -27,6 +27,13 @@ export class GraffitiService {
     return this.getTags().pipe(
       map((value: IGraffiti[]) => [...value, ...tag]),
       tap((value: IGraffiti[]) => this.storage.setItem(this.collectionKey, JSON.stringify(value)))
+    );
+  }
+
+  public removeTag(tags: string[]): Observable<IGraffiti[]> {
+    return this.getTags().pipe(
+      map((arr: IGraffiti[]) => arr.filter(item => !tags.includes(item.tag))),
+      tap((arr: IGraffiti[]) => this.storage.setItem(this.collectionKey, JSON.stringify(arr)))
     );
   }
 }
