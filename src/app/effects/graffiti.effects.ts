@@ -30,8 +30,8 @@ export class GraffitiEffects {
   CreateGraffitiTag$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(GraffitiActions.addGraffiti),
-      mergeMap(payload =>
-        this.storageService.addTag([]).pipe(
+      mergeMap(({payload}) =>
+        this.storageService.addTag([payload]).pipe(
           map(() => GraffitiActions.addGraffitiSuccess({payload})),
           catchError(error => of(GraffitiActions.addGraffitiFailure(error)))
         )

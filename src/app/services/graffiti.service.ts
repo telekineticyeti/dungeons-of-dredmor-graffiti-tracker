@@ -4,7 +4,7 @@ import {Observable, of, throwError} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class GraffitiService {
   constructor(@Inject(LOCAL_STORAGE_TOKEN) private storage: Storage) {}
@@ -19,14 +19,14 @@ export class GraffitiService {
   public getTags(): Observable<IGraffiti[]> {
     return this.supported().pipe(
       map(_ => this.storage.getItem(this.collectionKey)),
-      map((value: string | null) => (value ? JSON.parse(value) : [])),
+      map((value: string | null) => (value ? JSON.parse(value) : []))
     );
   }
 
-  addTag(graffitis: IGraffiti[]): Observable<IGraffiti[]> {
+  public addTag(tag: IGraffiti[]): Observable<IGraffiti[]> {
     return this.getTags().pipe(
-      map((value: IGraffiti[]) => [...value, ...graffitis]),
-      tap((value: IGraffiti[]) => this.storage.setItem(this.collectionKey, JSON.stringify(value))),
+      map((value: IGraffiti[]) => [...value, ...tag]),
+      tap((value: IGraffiti[]) => this.storage.setItem(this.collectionKey, JSON.stringify(value)))
     );
   }
 }
@@ -36,5 +36,5 @@ export function storageFactory() {
 }
 
 export const LOCAL_STORAGE_TOKEN = new InjectionToken('graffiti-local-storage', {
-  factory: storageFactory,
+  factory: storageFactory
 });

@@ -4,7 +4,8 @@ import {State} from './reducers/graffiti.reducer';
 import {GraffitiActions} from './actions';
 import {IGraffiti} from './components/graffiti/graffiti.component';
 import {Observable, Subscription} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, catchError} from 'rxjs/operators';
+import {GraffitiService} from './services/graffiti.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
 
   public GraffitiList: IGraffiti[] = [];
 
-  constructor(private store: Store<{graffitis}>) {
+  constructor(private store: Store<{graffitis}>, private service: GraffitiService) {
     this.graffiti$ = store.pipe(select('graffitis'));
 
     // store.select('graffitis').subscribe(graf => (this.GraffitiList2 = graf));
@@ -37,6 +38,6 @@ export class AppComponent implements OnInit {
 
   public addGraffiti(): void {
     const newGraffiti: IGraffiti = {tag: this.tag};
-    this.store.dispatch(GraffitiActions.addGraffiti(newGraffiti));
+    this.store.dispatch(GraffitiActions.addGraffiti({payload: newGraffiti}));
   }
 }
