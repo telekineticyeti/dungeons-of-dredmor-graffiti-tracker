@@ -1,6 +1,7 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import {IGraffiti} from '../components/graffiti/graffiti.component';
+import {IGraffiti} from '../models/graffiti.model';
 import {GraffitiActions} from '../actions';
+import {state} from '@angular/animations';
 
 export const graffitiFeatureKey = 'graffiti';
 
@@ -14,15 +15,24 @@ export const initialState: State = {
 
 const graffitiReducer = createReducer(
   initialState,
-  on(GraffitiActions.addGraffiti, (state, graffiti) => {
-    return {...state, graffitis: [...state.graffitis, graffiti]};
-  }),
+  /**
+   * Add a graffiti
+   */
   on(GraffitiActions.addGraffitiSuccess, (state, {payload}) => {
     return {...state, graffitis: [...state.graffitis, payload]};
   }),
+  /**
+   * Load graffitis
+   */
   on(GraffitiActions.loadGraffitis, state => state),
   on(GraffitiActions.loadGraffitisSuccess, (state, {payload}) => {
     return {...state, graffitis: payload};
+  }),
+  /**
+   * Remove graffiti
+   */
+  on(GraffitiActions.removeGraffitiSuccess, (state, {payload}) => {
+    return {...state, graffitis: state.graffitis.filter(graffiti => payload.tag !== graffiti.tag)};
   })
 );
 

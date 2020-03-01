@@ -2,15 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {Store, select} from '@ngrx/store';
 import {State} from './reducers/graffiti.reducer';
 import {GraffitiActions} from './actions';
-import {IGraffiti} from './components/graffiti/graffiti.component';
+import {IGraffiti} from './models/graffiti.model';
 import {Observable, Subscription} from 'rxjs';
-import {map, catchError} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {GraffitiService} from './services/graffiti.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   public tag: string = '';
@@ -19,10 +19,8 @@ export class AppComponent implements OnInit {
 
   public GraffitiList: IGraffiti[] = [];
 
-  constructor(private store: Store<{graffitis}>, private service: GraffitiService) {
+  constructor(private store: Store<{graffitis}>) {
     this.graffiti$ = store.pipe(select('graffitis'));
-
-    // store.select('graffitis').subscribe(graf => (this.GraffitiList2 = graf));
   }
 
   public ngOnInit(): void {
@@ -36,8 +34,12 @@ export class AppComponent implements OnInit {
     this.store.dispatch(GraffitiActions.loadGraffitis());
   }
 
-  public addGraffiti(): void {
-    const newGraffiti: IGraffiti = {tag: this.tag};
+  public addGraffiti(savedGraffiti: IGraffiti): void {
+    const newGraffiti: IGraffiti = savedGraffiti;
     this.store.dispatch(GraffitiActions.addGraffiti({payload: newGraffiti}));
+  }
+
+  public removeGraffiti(target: IGraffiti): void {
+    this.store.dispatch(GraffitiActions.removeGraffiti({payload: target}));
   }
 }

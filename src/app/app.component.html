@@ -1,10 +1,16 @@
-<form (ngSubmit)="addGraffiti()">
-  <div class="form-group">
-    <input [(ngModel)]="tag" placeholder="Enter tag" class="form-control" name="Tag" />
+<mat-toolbar color="primary">
+  <img src="assets/graffiti.png" />
+  <div>
+    <h1>Dungeons of Dredmor</h1>
+    <h2>Conquest of the Wizardlands graffiti tracker</h2>
   </div>
-  <button type="submit">Add tag</button>
-</form>
-<hr />
-<div class="graffitis">
-  <p *ngFor="let g of GraffitiList">{{ g.tag }}</p>
+</mat-toolbar>
+
+<div class="container">
+  <div class="col-50">
+    <graffiti-list [tags]="GraffitiList" (removeEvent)="removeGraffiti($event)"></graffiti-list>
+  </div>
+  <div class="col-50">
+    <graffiti-details (saveEvent)="addGraffiti($event)"></graffiti-details>
+  </div>
 </div>

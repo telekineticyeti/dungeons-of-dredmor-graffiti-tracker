@@ -8,18 +8,21 @@ import {EffectsModule} from '@ngrx/effects';
 
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {GraffitiComponent} from './components/graffiti/graffiti.component';
 import {GraffitiReducer} from './reducers/graffiti.reducer';
 import {GraffitiEffects} from './effects/graffiti.effects';
+import {MaterialModule} from './material.module';
+import {GraffitiListComponent} from './components/graffiti-list/graffiti-list.component';
+import {GraffitiDetailsComponent} from './components/graffiti-details/graffiti-details.component';
 
 @NgModule({
-  declarations: [AppComponent, GraffitiComponent],
+  declarations: [AppComponent, GraffitiListComponent, GraffitiDetailsComponent],
   imports: [
     BrowserModule,
     FormsModule,
     StoreModule.forRoot({graffitis: GraffitiReducer}),
     EffectsModule.forRoot([GraffitiEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

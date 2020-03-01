@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraffitiComponent } from './graffiti.component';
+import { GraffitiDetailsComponent } from './graffiti-details.component';
 
-describe('GraffitiComponent', () => {
-  let component: GraffitiComponent;
-  let fixture: ComponentFixture<GraffitiComponent>;
+describe('GraffitiDetailsComponent', () => {
+  let component: GraffitiDetailsComponent;
+  let fixture: ComponentFixture<GraffitiDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GraffitiComponent ]
+      declarations: [ GraffitiDetailsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GraffitiComponent);
+    fixture = TestBed.createComponent(GraffitiDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

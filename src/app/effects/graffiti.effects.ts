@@ -5,7 +5,7 @@ import {mergeMap, catchError, map, switchMap} from 'rxjs/operators';
 import {Action} from '@ngrx/store';
 import {GraffitiActions} from '../actions';
 import {GraffitiService} from '../services/graffiti.service';
-import {IGraffiti} from '../components/graffiti/graffiti.component';
+import {IGraffiti} from '../models/graffiti.model';
 
 @Injectable()
 export class GraffitiEffects {
@@ -14,7 +14,7 @@ export class GraffitiEffects {
   LoadGraffitis$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(GraffitiActions.loadGraffitis),
-      mergeMap(() =>
+      mergeMap(_ =>
         this.storageService.getTags().pipe(
           map((data: IGraffiti[]) => {
             return GraffitiActions.loadGraffitisSuccess({payload: data});
@@ -32,8 +32,20 @@ export class GraffitiEffects {
       ofType(GraffitiActions.addGraffiti),
       mergeMap(({payload}) =>
         this.storageService.addTag([payload]).pipe(
-          map(() => GraffitiActions.addGraffitiSuccess({payload})),
+          map(_ => GraffitiActions.addGraffitiSuccess({payload})),
           catchError(error => of(GraffitiActions.addGraffitiFailure(error)))
+        )
+      )
+    )
+  );
+
+  RemoveGraffitiTag$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GraffitiActions.removeGraffiti),
+      mergeMap(({payload}) =>
+        this.storageService.removeTag([payload.tag]).pipe(
+          map(_ => GraffitiActions.removeGraffitiSuccess({payload})),
+          catchError(error => of(GraffitiActions.removeGraffitiFailure(error)))
         )
       )
     )

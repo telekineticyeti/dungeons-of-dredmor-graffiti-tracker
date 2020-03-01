@@ -1,0 +1,58 @@
+mat-card-header ::ng-deep {
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .mat-card-header-text {
+    margin: 0;
+  }
+}
+mat-card-actions {
+  text-align: right;
+  button {
+    display: inline-block;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-list-item {
+  height: auto !important;
+  min-height: 48px;
+  margin-top: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  &:last-of-type {
+    border: none;
+  }
+  h5 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .notes {
+    font-size: 12px;
+    font-weight: 300;
+    opacity: 0.5;
+  }
+
+  .remove {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  .content {
+    position: relative;
+    width: 100%;
+    min-height: 48px;
+  }
+  &:hover {
+    .remove {
+      opacity: 1;
+    }
+  }
+}

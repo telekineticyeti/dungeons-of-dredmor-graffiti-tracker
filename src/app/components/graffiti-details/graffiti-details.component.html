@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-header><h3>Add new graffiti</h3></mat-card-header>
+  <form (submit)="save()">
+    <mat-card-content>
+      <br />
+      <p>Use this tracker to keep tabs on wizard graffitis found during your Dredmor adventures.</p>
+      <p>
+        Remember, each graffiti is a seed that can be shared with friends and revisited by your
+        future characters. Happy hunting!
+      </p>
+      <mat-form-field>
+        <mat-label>Graffiti tag</mat-label>
+        <input matInput [(ngModel)]="selectedTag.tag" type="text" name="tag" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Notes</mat-label>
+        <textarea matInput [(ngModel)]="selectedTag.notes" name="tag"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-stroked-button color="accent">Save</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
