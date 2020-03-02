@@ -1,5 +1,3 @@
-# Dungeons of Dredmor - Conquest of the Wizardlands graffiti tracker.
-
 This project is a learning exercise for the NgRx framework. Data persists using browser localstorage.
 
 ## Development server
