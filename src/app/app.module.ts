@@ -13,16 +13,19 @@ import {GraffitiEffects} from './effects/graffiti.effects';
 import {MaterialModule} from './material.module';
 import {GraffitiListComponent} from './components/graffiti-list/graffiti-list.component';
 import {GraffitiDetailsComponent} from './components/graffiti-details/graffiti-details.component';
+import {ToolbarComponent} from './components/toolbar/toolbar.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, GraffitiListComponent, GraffitiDetailsComponent],
+  declarations: [AppComponent, GraffitiListComponent, GraffitiDetailsComponent, ToolbarComponent],
   imports: [
     BrowserModule,
     FormsModule,
     StoreModule.forRoot({graffitis: GraffitiReducer}),
     EffectsModule.forRoot([GraffitiEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

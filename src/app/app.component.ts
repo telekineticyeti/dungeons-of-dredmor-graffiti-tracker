@@ -6,6 +6,7 @@ import {IGraffiti} from './models/graffiti.model';
 import {Observable, Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {GraffitiService} from './services/graffiti.service';
+import {IMenuClick} from './components/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-root',
@@ -41,5 +42,19 @@ export class AppComponent implements OnInit {
 
   public removeGraffiti(target: IGraffiti): void {
     this.store.dispatch(GraffitiActions.removeGraffiti({payload: target}));
+  }
+
+  public onToolbarMenuClick(rawEvent: IMenuClick) {
+    switch (rawEvent.item) {
+      case 'Load':
+        console.log('load');
+        break;
+      case 'Export':
+        console.log('export');
+        break;
+      case 'Samples':
+        console.log('samples');
+        break;
+    }
   }
 }

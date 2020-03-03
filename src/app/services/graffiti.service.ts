@@ -2,12 +2,16 @@ import {Injectable, Inject, InjectionToken} from '@angular/core';
 import {IGraffiti} from '../models/graffiti.model';
 import {Observable, of, throwError} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
+import SampleData from '../../assets/sampledata.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GraffitiService {
-  constructor(@Inject(LOCAL_STORAGE_TOKEN) private storage: Storage) {}
+  constructor(@Inject(LOCAL_STORAGE_TOKEN) private storage: Storage) {
+    const sampleData = <any>SampleData;
+    console.log(sampleData);
+  }
 
   public tags: string[] = [];
   private collectionKey = 'graffiti-app';
