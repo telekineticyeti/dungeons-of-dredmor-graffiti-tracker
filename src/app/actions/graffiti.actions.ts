@@ -19,11 +19,11 @@ export const loadGraffitisFailure = createAction(
 /**
  * Add Graffiti
  */
-export const addGraffiti = createAction('[Graffiti] add Graffiti', props<{payload: IGraffiti}>());
+export const addGraffiti = createAction('[Graffiti] add Graffiti', props<{payload: IGraffiti[]}>());
 
 export const addGraffitiSuccess = createAction(
   '[Graffiti] add Graffiti Success',
-  props<{payload: IGraffiti}>()
+  props<{payload: IGraffiti[]}>()
 );
 
 export const addGraffitiFailure = createAction('[Graffiti] add Graffiti Failure', props<Error>());
@@ -43,5 +43,32 @@ export const removeGraffitiSuccess = createAction(
 
 export const removeGraffitiFailure = createAction(
   '[Graffiti] remove Graffiti Failure',
+  props<Error>()
+);
+
+/**
+ * Remove all Graffiti
+ */
+export const removeAllGraffiti = createAction('[Graffiti] remove all Graffiti');
+
+export const removeAllGraffitiSuccess = createAction('[Graffiti] remove all Graffiti Success');
+
+export const removeAllGraffitiFailure = createAction(
+  '[Graffiti] remove all Graffiti Failure',
+  props<Error>()
+);
+
+/**
+ * Import & Export
+ */
+export const loadSampleGraffitis = createAction('[Graffiti] load sample Graffitis');
+
+export const loadSampleGraffitisSuccess = createAction(
+  '[Graffiti] load sample Graffiti Success',
+  props<{payload: IGraffiti[]}>()
+);
+
+export const loadSampleGraffitisFailure = createAction(
+  '[Graffiti] load sample Graffiti Failure',
   props<Error>()
 );

@@ -1,17 +1,14 @@
 import {Injectable, Inject, InjectionToken} from '@angular/core';
 import {IGraffiti} from '../models/graffiti.model';
 import {Observable, of, throwError} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import {map, tap, mergeMap} from 'rxjs/operators';
 import SampleData from '../../assets/sampledata.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GraffitiService {
-  constructor(@Inject(LOCAL_STORAGE_TOKEN) private storage: Storage) {
-    const sampleData = <any>SampleData;
-    console.log(sampleData);
-  }
+  constructor(@Inject(LOCAL_STORAGE_TOKEN) private storage: Storage) {}
 
   public tags: string[] = [];
   private collectionKey = 'graffiti-app';
@@ -27,6 +24,14 @@ export class GraffitiService {
     );
   }
 
+  public getSampleTags(): Observable<IGraffiti[]> {
+    const sampleData = <IGraffiti[]>SampleData;
+    return this.getTags().pipe(
+      map((arr: IGraffiti[]) => [...sampleData, ...arr]),
+      tap((arr: IGraffiti[]) => this.storage.setItem(this.collectionKey, JSON.stringify(arr)))
+    );
+  }
+
   public addTag(tag: IGraffiti[]): Observable<IGraffiti[]> {
     return this.getTags().pipe(
       map((value: IGraffiti[]) => [...value, ...tag]),
@@ -39,6 +44,23 @@ export class GraffitiService {
       map((arr: IGraffiti[]) => arr.filter(item => !tags.includes(item.tag))),
       tap((arr: IGraffiti[]) => this.storage.setItem(this.collectionKey, JSON.stringify(arr)))
     );
+  }
+
+  public deleteAll(): Observable<IGraffiti[]> {
+    return this.supported().pipe(
+      map(_ => this.storage.removeItem(this.collectionKey)),
+      mergeMap(_ => of([]))
+    );
+  }
+
+  public downloadTags(data: IGraffiti[]): void {
+    var dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute('href', dataStr);
+    downloadAnchorNode.setAttribute('download', 'Conquest_of_the_wizardlands_graffitis.json');
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
   }
 }
 

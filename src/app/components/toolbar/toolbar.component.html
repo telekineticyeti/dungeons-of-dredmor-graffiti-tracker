@@ -25,4 +25,8 @@
     <mat-icon svgIcon="import" aria-hidden="false" aria-label="Samples"></mat-icon>
     Load Sample tags (272 tags)
   </button>
+  <button mat-menu-item (click)="menuClick($event, 'RemoveAll')">
+    <mat-icon aria-hidden="false" aria-label="Remove All">delete</mat-icon>
+    Remove all tags
+  </button>
 </mat-menu>

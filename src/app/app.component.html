@@ -8,3 +8,5 @@
     <graffiti-details (saveEvent)="addGraffiti($event)"></graffiti-details>
   </div>
 </div>
+
+<input hidden type="file" #uploader (change)="uploadFile($event)" accept=".json" />

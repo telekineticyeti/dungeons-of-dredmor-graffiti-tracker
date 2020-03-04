@@ -19,12 +19,11 @@ const graffitiReducer = createReducer(
    * Add a graffiti
    */
   on(GraffitiActions.addGraffitiSuccess, (state, {payload}) => {
-    return {...state, graffitis: [...state.graffitis, payload]};
+    return {...state, graffitis: [...state.graffitis, ...payload]};
   }),
   /**
    * Load graffitis
    */
-  on(GraffitiActions.loadGraffitis, state => state),
   on(GraffitiActions.loadGraffitisSuccess, (state, {payload}) => {
     return {...state, graffitis: payload};
   }),
@@ -33,6 +32,18 @@ const graffitiReducer = createReducer(
    */
   on(GraffitiActions.removeGraffitiSuccess, (state, {payload}) => {
     return {...state, graffitis: state.graffitis.filter(graffiti => payload.tag !== graffiti.tag)};
+  }),
+  /**
+   * Remove All graffitis
+   */
+  on(GraffitiActions.removeAllGraffitiSuccess, state => {
+    return {...state, graffitis: []};
+  }),
+  /**
+   * Sample graffiti
+   */
+  on(GraffitiActions.loadSampleGraffitisSuccess, (state, {payload}) => {
+    return {...state, graffitis: payload};
   })
 );
 

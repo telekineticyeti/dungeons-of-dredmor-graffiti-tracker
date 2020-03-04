@@ -40,4 +40,4 @@ export interface IMenuClick {
   item: MenuItemTypes;
 }
 
-export type MenuItemTypes = 'Export' | 'Load' | 'Samples';
+export type MenuItemTypes = 'Export' | 'Load' | 'Samples' | 'RemoveAll';
