@@ -1,6 +1,6 @@
 This project is a learning exercise for the NgRx framework. Data persists using browser localstorage.
 
-The options includes options to export and import tag codes in JSON format, as well as load sample tag codes. The sample codes were parsed from the Gaslamps games forums [here](https://community.gaslampgames.com/threads/graffiti-dump-mostly-unexplored-codes.6538/).
+The menu includes options to export and import tag codes in JSON format, as well as load sample tag codes. The sample codes were parsed from the Gaslamps games forums [here](https://community.gaslampgames.com/threads/graffiti-dump-mostly-unexplored-codes.6538/).
 
 ## Development server
 
