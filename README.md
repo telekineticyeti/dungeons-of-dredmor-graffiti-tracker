@@ -9,3 +9,11 @@ Clone this repo locally and run `ng serve` for a dev server. Navigate to `http:/
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Building for Github pages
+
+```
+ng build --prod --aot --base-href 'https://telekineticyeti.github.io/dungeons-of-dredmor-graffiti-tracker/'
+
+git subtree push --prefix dist origin gh-pages
+```
